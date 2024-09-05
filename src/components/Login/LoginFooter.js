@@ -1,4 +1,4 @@
 const LoginFooter = () => {
-  return <div className="text-center text-xl shadow-lg">Footer</div>;
+  return <div className="bg-black w-full h-96"></div>;
 };
 export default LoginFooter;
