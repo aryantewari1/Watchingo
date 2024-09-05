@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { LOGINIMG_URL } from "../../constants/constants";
 import { Link } from "react-router-dom";
 import { checkValidData } from "../../utils/validate";
+import { auth } from "../../utils/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 const LoginBody = () => {
   const [showLearnMore, setShowLearnMore] = useState(false);
   const emailRef = useRef(null);
@@ -13,6 +15,23 @@ const LoginBody = () => {
       passwordRef.current.value
     );
     setErrorMessage(valid);
+    if (valid) return;
+    signInWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passwordRef.current.value
+    )
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage("Invalid credentails");
+      });
   }
 
   function handleLearnMore() {
@@ -27,7 +46,7 @@ const LoginBody = () => {
       />
       <div className="absolute w-full h-full top-0 left-0 bg-black opacity-60"></div>
       <div className="absolute top-0 right-0 left-0 mt-28  bg-black bg-opacity-65 w-4/12 h-full mx-auto px-16 py-12">
-        <form className="w-11/12">
+        <form className="w-full" onSubmit={(e) => e.preventDefault()}>
           <div className="mb-8">
             <header className="text-white text-3xl font-bold">Sign In</header>
           </div>
@@ -38,7 +57,6 @@ const LoginBody = () => {
                 placeholder="Email or mobile number"
                 className="w-full pl-4 py-4 bg-inherit border-solid border-gray-400 border-[1px] rounded-md text-white"
                 ref={emailRef}
-                onBlur={isValid}
               />
             </div>
             <div className="mb-2">
@@ -47,7 +65,6 @@ const LoginBody = () => {
                 placeholder="Password"
                 ref={passwordRef}
                 className="w-full pl-4 py-4 bg-inherit border-solid border-gray-400 border-[1px] rounded-md text-white "
-                onBlur={isValid}
               />
             </div>
             <div className="w-full">
@@ -59,12 +76,15 @@ const LoginBody = () => {
             </div>
           </div>
           <div className="mb-4 mt-4">
-            <button className="text-white w-full bg-red-600 py-2 font-semibold rounded-sm mb-3">
+            <button
+              className="text-white w-full bg-red-600 py-2 font-semibold rounded-sm mb-3"
+              onClick={isValid}
+            >
               Sign In
             </button>
             <p className="p-2 text-center text-gray-300 mb-3">OR</p>
             <Link
-              to="/"
+              to="/signup"
               className="w-full inline-block text-center text-white  bg-red-600 py-2 font-semibold rounded-sm mb-4 "
             >
               {" "}
