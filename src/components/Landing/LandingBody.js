@@ -25,6 +25,11 @@ const LandingBody = () => {
                 bg-gradient-to-b from-black
                 "
       ></div>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </main>
   );
 };

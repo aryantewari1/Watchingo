@@ -58,11 +58,11 @@ const LoginBody = () => {
               )}
             </div>
           </div>
-          <div className="mb-4">
-            <button className="text-white w-full bg-red-600 py-2 font-semibold rounded-sm mb-4">
+          <div className="mb-4 mt-4">
+            <button className="text-white w-full bg-red-600 py-2 font-semibold rounded-sm mb-3">
               Sign In
             </button>
-            <p className="p-2 text-center text-gray-300 mb-4">OR</p>
+            <p className="p-2 text-center text-gray-300 mb-3">OR</p>
             <Link
               to="/"
               className="w-full inline-block text-center text-white  bg-red-600 py-2 font-semibold rounded-sm mb-4 "
