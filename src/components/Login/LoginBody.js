@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { LOGINIMG_URL } from "../../constants/constants";
 import { Link } from "react-router-dom";
+import { checkValidData } from "../../utils/validate";
 const LoginBody = () => {
   const [showLearnMore, setShowLearnMore] = useState(false);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  function isValid() {
+    const valid = checkValidData(
+      emailRef.current.value,
+      passwordRef.current.value
+    );
+    setErrorMessage(valid);
+  }
 
   function handleLearnMore() {
     setShowLearnMore(true);
@@ -26,14 +37,25 @@ const LoginBody = () => {
                 type="text"
                 placeholder="Email or mobile number"
                 className="w-full pl-4 py-4 bg-inherit border-solid border-gray-400 border-[1px] rounded-md text-white"
+                ref={emailRef}
+                onBlur={isValid}
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-2">
               <input
                 type="password"
                 placeholder="Password"
+                ref={passwordRef}
                 className="w-full pl-4 py-4 bg-inherit border-solid border-gray-400 border-[1px] rounded-md text-white "
+                onBlur={isValid}
               />
+            </div>
+            <div className="w-full">
+              {errorMessage && (
+                <p className="text-red-600 text-sm font-semibold mb-4">
+                  {errorMessage}
+                </p>
+              )}
             </div>
           </div>
           <div className="mb-4">
