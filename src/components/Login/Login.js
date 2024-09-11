@@ -1,8 +1,10 @@
 import LoginBody from "./LoginBody";
 import LoginFooter from "./LoginFooter";
-import LoginHeader from "./LoginHeader";
+import Header from "../Header";
+import { loginHeader } from "../Header";
 
 const Login = () => {
+  const LoginHeader = loginHeader(Header);
   return (
     <div>
       <LoginHeader />
