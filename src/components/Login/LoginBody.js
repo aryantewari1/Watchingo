@@ -1,14 +1,19 @@
 import { useRef, useState } from "react";
-import { LOGINIMG_URL } from "../../constants/constants";
+import { LOGIN_IMG_URL } from "../../constants/constants";
 import { Link } from "react-router-dom";
 import { checkValidData } from "../../utils/validate";
 import { auth } from "../../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../store/Slices/userSlice";
 const LoginBody = () => {
+  const dispatch = useDispatch();
+
   const [showLearnMore, setShowLearnMore] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [errorMessage, setErrorMessage] = useState(null);
+
   function isValid() {
     const valid = checkValidData(
       emailRef.current.value,
@@ -22,15 +27,12 @@ const LoginBody = () => {
       passwordRef.current.value
     )
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        console.log(user);
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrorMessage("Invalid credentails");
+        console.log(errorMessage);
       });
   }
 
@@ -40,8 +42,7 @@ const LoginBody = () => {
   return (
     <div className="relative">
       <img
-        src={LOGINIMG_URL}
-        alt="Landing Body Image"
+        src={LOGIN_IMG_URL}
         className="bg-gradient-to-t from-black w-full h-screen object-cover"
       />
       <div className="absolute w-full h-full top-0 left-0 bg-black opacity-60"></div>

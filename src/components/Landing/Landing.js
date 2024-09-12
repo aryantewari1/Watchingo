@@ -1,8 +1,10 @@
 import LandingBody from "./LandingBody";
 import LandingFooter from "./LandingFooter";
-import LandingHeader from "./LandingHeader";
+import Header from "../Header";
+import { landingHeader } from "../Header";
 
 const Landing = () => {
+  const LandingHeader = landingHeader(Header);
   return (
     <div>
       <LandingHeader />
