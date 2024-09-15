@@ -5,16 +5,12 @@ import { checkValidData } from "../utils/validate";
 import { useState } from "react";
 import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { setSignUp } from "../store/Slices/userSlice";
 const SignUp = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const dispatch = useDispatch();
 
   const [errorMessage, setErrorMessage] = useState(null);
   function isValid() {
-    dispatch(setSignUp(true));
     const valid = checkValidData(
       emailRef.current.value,
       passwordRef.current.value
@@ -28,15 +24,11 @@ const SignUp = () => {
       passwordRef.current.value
     )
       .then((userCredential) => {
-        // Signed up
         const user = userCredential.user;
-        // ...
-        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
         setErrorMessage(error.message);
       });
   }

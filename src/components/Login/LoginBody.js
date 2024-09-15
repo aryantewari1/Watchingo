@@ -5,7 +5,7 @@ import { checkValidData } from "../../utils/validate";
 import { auth } from "../../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { setSignUp } from "../../store/Slices/userSlice";
+import { addUser } from "../../store/Slices/userSlice";
 const LoginBody = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,7 +15,6 @@ const LoginBody = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   function isValid() {
-    dispatch(setSignUp(false));
     const valid = checkValidData(
       emailRef.current.value,
       passwordRef.current.value
@@ -23,7 +22,6 @@ const LoginBody = () => {
     setErrorMessage(valid);
     if (valid) return;
 
-    console.log("hello");
     signInWithEmailAndPassword(
       auth,
       emailRef.current.value,
@@ -31,6 +29,9 @@ const LoginBody = () => {
     )
       .then((userCredential) => {
         const user = userCredential.user;
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+
         navigate("/browse");
       })
       .catch((error) => {

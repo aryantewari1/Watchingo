@@ -7,10 +7,9 @@ import { addUser, removeUser } from "./store/Slices/userSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const isSignedUp = useSelector((state) => state.user.isSignUp);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user && isSignedUp) {
+      if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
       } else {
@@ -19,7 +18,7 @@ function App() {
     });
 
     return () => unsubscribe();
-  }, [isSignedUp]);
+  }, []);
   return (
     <div className="">
       <Outlet />
