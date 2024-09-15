@@ -1,26 +1,29 @@
 import { useRef, useState } from "react";
 import { LOGIN_IMG_URL } from "../../constants/constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { checkValidData } from "../../utils/validate";
 import { auth } from "../../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { addUser } from "../../store/Slices/userSlice";
+import { setSignUp } from "../../store/Slices/userSlice";
 const LoginBody = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [showLearnMore, setShowLearnMore] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
   function isValid() {
+    dispatch(setSignUp(false));
     const valid = checkValidData(
       emailRef.current.value,
       passwordRef.current.value
     );
     setErrorMessage(valid);
     if (valid) return;
+
+    console.log("hello");
     signInWithEmailAndPassword(
       auth,
       emailRef.current.value,
@@ -28,6 +31,7 @@ const LoginBody = () => {
     )
       .then((userCredential) => {
         const user = userCredential.user;
+        navigate("/browse");
       })
       .catch((error) => {
         const errorCode = error.code;

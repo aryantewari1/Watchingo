@@ -3,6 +3,7 @@ import Login from "./components/Login/Login";
 import Landing from "./components/Landing/Landing";
 import SignUp from "./components/SignUp";
 import App from "./App";
+import Browse from "./components/Browser/Browse";
 
 const appRouter = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const appRouter = createBrowserRouter([
       { path: "/", element: <Landing /> },
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <SignUp /> },
+      { path: "/browse", element: <Browse /> },
     ],
   },
 ]);
