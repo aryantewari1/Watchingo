@@ -2,7 +2,7 @@ import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
 const Header = ({ children }) => {
   return (
-    <header className="absolute w-full z-20 flex items-center mt-4 justify-between">
+    <header className="absolute w-full z-20 flex items-center pt-4 justify-between bg-gradient-to-b from-black ">
       <img src={logo} alt="logo" className="w-80 pl-32" />
       {children}
     </header>

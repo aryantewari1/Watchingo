@@ -1,14 +1,16 @@
 import logo from ".././images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { checkValidData } from "../utils/validate";
 import { useState } from "react";
 import { auth } from "../utils/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 const SignUp = () => {
+  const navigate = useNavigate();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-
+  const firstName = useRef(null);
+  const secondName = useRef(null);
   const [errorMessage, setErrorMessage] = useState(null);
   function isValid() {
     const valid = checkValidData(
@@ -25,6 +27,17 @@ const SignUp = () => {
     )
       .then((userCredential) => {
         const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: firstName.current.value + " " + secondName.current.value,
+          photoURL: "https://avatars.githubusercontent.com/u/143114103?v=4",
+        })
+          .then(() => {
+            navigate("/login");
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -57,11 +70,13 @@ const SignUp = () => {
               <div className="mb-4 flex justify-between">
                 <input
                   type="text"
+                  ref={firstName}
                   placeholder="First Name"
                   className="py-2 pl-3 w-1/2 mr-4 bg-inherit border-solid border-gray-400 border-[1px] rounded-md text-white"
                 />
                 <input
                   type="text"
+                  ref={secondName}
                   placeholder="Last Name"
                   className="py-2 pl-3 w-1/2 bg-inherit border-solid border-gray-400 border-[1px] rounded-md text-white"
                 />
