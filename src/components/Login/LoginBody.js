@@ -38,8 +38,6 @@ const LoginBody = () => {
             photoURL: photoURL,
           })
         );
-
-        navigate("/browse");
       })
       .catch((error) => {
         const errorCode = error.code;

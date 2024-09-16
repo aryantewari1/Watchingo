@@ -5,8 +5,6 @@ import SignUp from "./components/SignUp";
 import App from "./App";
 import Browse from "./components/Browser/Browse";
 import BrowseHome from "./components/Browser/BrowseHome/BrowseHome";
-import BrowseProtectedRoute from "./components/BrowseProtectedRoute";
-import GeneralProtectedRoute from "./components/GeneralProtectedRoute";
 
 const appRouter = createBrowserRouter([
   {
@@ -15,30 +13,16 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "",
-        element: (
-          <GeneralProtectedRoute>
-            <Landing />{" "}
-          </GeneralProtectedRoute>
-        ),
+        element: <Landing />,
       },
       {
         path: "/login",
-        element: (
-          <GeneralProtectedRoute>
-            {" "}
-            <Login />
-          </GeneralProtectedRoute>
-        ),
+        element: <Login />,
       },
       { path: "/signup", element: <SignUp /> },
       {
         path: "/browse",
-        element: (
-          <BrowseProtectedRoute>
-            {" "}
-            <Browse />{" "}
-          </BrowseProtectedRoute>
-        ),
+        element: <Browse />,
         children: [
           {
             path: "",

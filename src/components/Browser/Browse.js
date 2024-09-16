@@ -1,22 +1,22 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Header from "../Header";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
+import { LOGO_URL } from "../../constants/constants";
+import { useSelector } from "react-redux";
 const Browse = () => {
   const navigate = useNavigate();
+  const user = useSelector((store) => store.user.user);
   const [showDropDown, setShowDropDown] = useState(false);
 
   function signUserOut() {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
         navigate("/login");
       })
-      .catch((error) => {
-        // An error happened.
-      });
+      .catch((error) => {});
   }
   return (
     <div className="">
@@ -38,11 +38,7 @@ const Browse = () => {
               }}
             >
               {" "}
-              <img
-                alt=""
-                src="https://avatars.githubusercontent.com/u/143114103?v=4"
-                className="w-12 rounded-full"
-              />
+              {user && <img alt="" src={LOGO_URL} className="w-9 rounded-sm" />}
             </div>
             <div
               onMouseEnter={() => {
@@ -52,10 +48,10 @@ const Browse = () => {
               <button className="text-xs pl-3">&#x25BC;</button>{" "}
             </div>
             {showDropDown && (
-              <div className="absolute flex flex-col top-20 left-[83%] bg-black">
+              <div className="absolute flex flex-col top-20 left-[83%] px-6 py-3 bg-black">
                 <button
                   onClick={signUserOut}
-                  className="text-white font-[helvetica] p-2 hover:underline "
+                  className="text-white text-sm font-[helvetica] hover:underline "
                   onMouseEnter={() => {
                     setShowDropDown(true);
                   }}

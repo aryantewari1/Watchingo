@@ -5,7 +5,11 @@ import { checkValidData } from "../utils/validate";
 import { useState } from "react";
 import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/Slices/userSlice";
+import { LOGO_URL } from "../constants/constants";
 const SignUp = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -26,13 +30,22 @@ const SignUp = () => {
       passwordRef.current.value
     )
       .then((userCredential) => {
+        console.log("user created in signup");
         const user = userCredential.user;
         updateProfile(auth.currentUser, {
           displayName: firstName.current.value + " " + secondName.current.value,
-          photoURL: "https://avatars.githubusercontent.com/u/143114103?v=4",
+          photoURL: LOGO_URL,
         })
           .then(() => {
-            navigate("/login");
+            dispatch(
+              addUser({
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+              })
+            );
+            console.log("user updated in sign up");
           })
           .catch((error) => {
             // An error occurred
