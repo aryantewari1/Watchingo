@@ -8,7 +8,6 @@ const useBrowseData = () => {
   const getMovies = async () => {
     const data = await fetch(API_URL, API_OPTIONS);
     const json = await data.json();
-    console.log(json);
     dispatch(addMovies(json));
   };
 
