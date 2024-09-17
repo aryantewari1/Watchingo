@@ -12,3 +12,4 @@ export const API_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0OWUyNjFkNGExMWY3NjE2NzA2NDBjNDNkMTlhM2I4OSIsIm5iZiI6MTcyNjU1NDMzNi42MDk2MTksInN1YiI6IjY2ZTdkNGI1Mzc2OGE3M2Y4ZDkxYjdiYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RC5WBRzEX2HQlvtdTrS61ZGUVfY6sZc_OdKWmX6jFkY",
   },
 };
+export const API_URL = "https://api.themoviedb.org/3/movie/now_playing?page=1";
