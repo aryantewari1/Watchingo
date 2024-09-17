@@ -13,10 +13,10 @@ const VideoTitle = ({ title, description }) => {
             src="https://img.icons8.com/?size=30&id=59862&format=png"
             className="absolute z-10 pt-4 mx-3 w-6"
           />
-          <button className="px-6 py-3 bg-white opacity-90 text-black rounded-md mr-3">
-            <div className="ml-6 text-xl font-bold ">Play Now</div>
+          <button className="px-6 py-3 bg-white opacity-90 text-black rounded-md mr-3 hover:opacity-100">
+            <div className="ml-6 text-xl font-bold">Play Now</div>
           </button>
-          <button className="pr-6 pl-3 py-3 bg-slate-600 opacity-80 text-white rounded-md">
+          <button className="pr-6 pl-3 py-3 bg-slate-600 opacity-80 text-white rounded-md hover:opacity-95">
             <div className="ml-3 text-xl font-bold ">
               &#9432; {"  "}More info
             </div>

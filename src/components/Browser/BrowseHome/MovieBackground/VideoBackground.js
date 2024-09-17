@@ -5,8 +5,7 @@ const VideoBackground = ({ id }) => {
   //we will require video since our
 
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
-  console.log(trailerVideo);
-  console.log(id);
+
   useTrailerVideo(id);
   return (
     <div className="w-full">

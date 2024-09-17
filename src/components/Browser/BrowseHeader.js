@@ -36,17 +36,17 @@ const BrowseHeader = () => {
             }}
           >
             {" "}
-            {user && <img alt="" src={LOGO_URL} className="w-9 rounded-sm" />}
+            {user && <img alt="" src={LOGO_URL} className="w-9 rounded-sm " />}
           </div>
           <div
             onMouseEnter={() => {
               setShowDropDown(true);
             }}
           >
-            <button className="text-xs pl-3">&#x25BC;</button>{" "}
+            <button className="text-xs text-gray-200 pl-3">&#x25BC;</button>{" "}
           </div>
           {showDropDown && (
-            <div className="absolute flex flex-col top-20 left-[83%] px-6 py-3 bg-black">
+            <div className="absolute flex flex-col top-20 left-[83%] px-6 py-3 bg-black opacity-80">
               <button
                 onClick={signUserOut}
                 className="text-white text-sm font-[helvetica] hover:underline "
