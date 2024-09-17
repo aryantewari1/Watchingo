@@ -4,5 +4,19 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities(
+        {
+          ".scrollbar-thin": {
+            "scrollbar-width": "thin",
+          },
+          ".scrollbar-none": {
+            "scrollbar-width": "none",
+          },
+        },
+        ["responsive", "hover"]
+      );
+    },
+  ],
 };

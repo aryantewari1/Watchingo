@@ -3,9 +3,7 @@ import useTrailerVideo from "../../../../hooks/useTrailerVideo";
 
 const VideoBackground = ({ id }) => {
   //we will require video since our
-
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
-
   useTrailerVideo(id);
   return (
     <div className="w-full">

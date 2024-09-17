@@ -1,11 +1,11 @@
 const VideoTitle = ({ title, description }) => {
   return (
     <div className="w-full">
-      <div className="absolute w-full aspect-video pt-80 px-16 bg-gradient-to-r from-black z-30">
-        <div className="text-6xl font-bold text-white font-[Helvetica] pb-2">
+      <div className="absolute w-full aspect-video pt-72 pl-20 bg-gradient-to-r from-black z-30">
+        <div className="text-7xl font-bold text-white font-[Helvetica] pb-6">
           {title}
         </div>
-        <div className="text-lg w-1/2 font-medium text-white font-[Helvetica] leading-6 mb-4">
+        <div className="text-lg w-[45%] font-medium text-white font-[Helvetica] leading-6 pb-8">
           {description}
         </div>
         <div className="ml-2">
