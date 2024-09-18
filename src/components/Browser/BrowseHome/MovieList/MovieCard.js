@@ -7,7 +7,7 @@ const MovieCard = ({ movie }) => {
       <img
         alt=""
         src={TMDB_IMG_URL + poster_path}
-        className="w-60 h-36 object-cover rounded-sm"
+        className="w-60 object-cover rounded-sm"
       />
     </div>
   );

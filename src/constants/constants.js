@@ -25,3 +25,7 @@ export const API_URL = "https://api.themoviedb.org/3/movie/now_playing?page=1";
 export const TMDB_IMG_URL = "https://image.tmdb.org/t/p/original/";
 export const POPULAR_MOVIES_API =
   "https://api.themoviedb.org/3/movie/popular?page=1";
+export const Top_Rated_API =
+  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+export const upcoming_movies_api =
+  "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
