@@ -12,5 +12,16 @@ export const API_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0OWUyNjFkNGExMWY3NjE2NzA2NDBjNDNkMTlhM2I4OSIsIm5iZiI6MTcyNjU1NDMzNi42MDk2MTksInN1YiI6IjY2ZTdkNGI1Mzc2OGE3M2Y4ZDkxYjdiYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RC5WBRzEX2HQlvtdTrS61ZGUVfY6sZc_OdKWmX6jFkY",
   },
 };
+export const POPULAR_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0OWUyNjFkNGExMWY3NjE2NzA2NDBjNDNkMTlhM2I4OSIsIm5iZiI6MTcyNjY3MTczNi44NTA3Mywic3ViIjoiNjZlN2Q0YjUzNzY4YTczZjhkOTFiN2JhIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.4XfHkXwTkKCwBtMzbjesbH2acZdgxhp23baFdddEmBU",
+  },
+};
+
 export const API_URL = "https://api.themoviedb.org/3/movie/now_playing?page=1";
 export const TMDB_IMG_URL = "https://image.tmdb.org/t/p/original/";
+export const POPULAR_MOVIES_API =
+  "https://api.themoviedb.org/3/movie/popular?page=1";
