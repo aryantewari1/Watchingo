@@ -1,33 +1,9 @@
 import { useRef } from "react";
-import { model } from "../../../../utils/geminiAI";
-import { API_OPTIONS } from "../../../../constants/constants";
+import useGptMovies from "../../../../hooks/useGptMovies";
 
 const GptSearchBar = () => {
-  const searchBar = useRef();
-  const searchTmdbMoives = async (movie) => {
-    const url =
-      "https://api.themoviedb.org/3/search/movie?query=" +
-      movie +
-      "&include_adult=true&language=en-US&page=1";
-    const data = await fetch(url, API_OPTIONS);
-    const json = await data.json();
-    return json?.results;
-  };
-  const handleGptSearch = async () => {
-    const prompt =
-      "Act like a movie recommender system for the following query:" +
-      searchBar?.current?.value +
-      "just give me 5 movies separated by commas";
-    const result = await model.generateContent(prompt);
-    console.log(result?.response?.text().split(","));
-    const gptMoviesResult = result?.response?.text().split(",");
-    const gptMoviesArray = gptMoviesResult.map((movie) =>
-      searchTmdbMoives(movie.trim())
-    );
-    console.log(gptMoviesArray);
-    const gptMovies = await Promise.all(gptMoviesArray);
-    console.log(gptMovies);
-  };
+  const searchBar = useRef(null);
+  const handleGptSearch = useGptMovies(searchBar);
   return (
     <div className="flex w-1/2 mx-auto">
       <div className="flex-[4] mr-2">
