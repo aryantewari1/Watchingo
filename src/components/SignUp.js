@@ -30,7 +30,6 @@ const SignUp = () => {
       passwordRef.current.value
     )
       .then((userCredential) => {
-        console.log("user created in signup");
         const user = userCredential.user;
         updateProfile(auth.currentUser, {
           displayName: firstName.current.value + " " + secondName.current.value,

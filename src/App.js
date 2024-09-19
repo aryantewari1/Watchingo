@@ -22,7 +22,6 @@ function App() {
         );
         navigate("/browse");
       } else {
-        console.log("user removed");
         dispatch(removeUser());
         navigate("/login");
       }
