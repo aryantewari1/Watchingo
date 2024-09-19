@@ -41,7 +41,7 @@ const BrowseHeader = () => {
               className="bg-red-600 text-white text-base  px-3 py-2 rounded-md mx-4 font-semibold font-[Helvetica] opacity-90 hover:opacity-100"
               onClick={handleGptSearch}
             >
-              GptSearch
+              {showGptSearch ? "Home" : "GptSearch"}
             </button>
           </div>
           <div

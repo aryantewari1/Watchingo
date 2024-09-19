@@ -6,11 +6,11 @@ const GptSearchBar = () => {
           <input
             type="search"
             placeholder="What would you like to watch today?"
-            className="w-full pl-6 py-4 text-lg font-[helvetica]"
+            className="w-full pl-6 py-4 text-lg font-[helvetica] rounded-sm"
           />
         </form>
       </div>
-      <div className="flex-[1] bg-red-600 text-center cursor-pointer">
+      <div className="flex-[1] bg-red-600 text-center cursor-pointer rounded-sm">
         <button className="pt-4 text-white font-bold font-[helvetica]">
           Search
         </button>
