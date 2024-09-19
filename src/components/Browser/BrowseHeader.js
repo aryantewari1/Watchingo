@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import { LOGO_URL } from "../../constants/constants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
+import { setShowGptSearch } from "../../store/Slices/GptSlice";
 
 const BrowseHeader = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const showGptSearch = useSelector((store) => store?.GPT?.showGptSearch);
   const user = useSelector((store) => store.user.user);
   const [showDropDown, setShowDropDown] = useState(false);
+  const handleGptSearch = () => {
+    dispatch(setShowGptSearch(!showGptSearch));
+  };
   function signUserOut() {
     signOut(auth)
       .then(() => {
@@ -30,6 +36,14 @@ const BrowseHeader = () => {
           <span>Browse By Languages</span>
         </div>
         <div className="flex flex-[1] text-center text-lg items-center justify-end pr-16">
+          <div>
+            <button
+              className="bg-red-600 text-white text-base  px-3 py-2 rounded-md mx-4 font-semibold font-[Helvetica] opacity-90 hover:opacity-100"
+              onClick={handleGptSearch}
+            >
+              GptSearch
+            </button>
+          </div>
           <div
             onMouseEnter={() => {
               setShowDropDown(true);

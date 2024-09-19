@@ -10,7 +10,7 @@ const MovieListContainer = () => {
     <div className="w-full  bg-black">
       <div className="-mt-52 relative z-50 pl-20">
         <MovieList
-          title={`Watch recommended movies based on "Beetlejuice Beetlejuice"`}
+          title={`Watch recommended movies based on ${movies?.results[3]?.original_title}`}
           movies={movies}
         />
         <MovieList title={`Popular Movies`} movies={popularMovies} />
