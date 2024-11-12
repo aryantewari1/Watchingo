@@ -5,7 +5,7 @@ const MovieList = ({ movies, title }) => {
     <div className="font-[Helvetica]">
       <div className="text-white font-bold text-2xl pb-4">{title}</div>
       <div className="flex overflow-x-scroll scrollbar-none">
-        {movies?.results.map((movie) => (
+        {movies?.map((movie) => (
           <MovieCard key={movie?.title} movie={movie} />
         ))}
       </div>

@@ -11,11 +11,14 @@ const MovieListContainer = () => {
       <div className="-mt-52 relative z-50 pl-20">
         <MovieList
           title={`Watch recommended movies based on ${movies?.results[3]?.original_title}`}
-          movies={movies}
+          movies={movies?.results}
         />
-        <MovieList title={`Popular Movies`} movies={popularMovies} />
-        <MovieList title={`Top Rated Movies`} movies={topRatedMovies} />
-        <MovieList title={"Upcoming Movies"} movies={upcomingMovies} />
+        <MovieList title={`Popular Movies`} movies={popularMovies?.results} />
+        <MovieList
+          title={`Top Rated Movies`}
+          movies={topRatedMovies?.results}
+        />
+        <MovieList title={"Upcoming Movies"} movies={upcomingMovies?.results} />
       </div>
     </div>
   );

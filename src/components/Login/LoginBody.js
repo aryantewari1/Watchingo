@@ -21,28 +21,29 @@ const LoginBody = () => {
     );
     setErrorMessage(valid);
     if (valid) return;
+    handleSignIn();
+  }
 
-    signInWithEmailAndPassword(
-      auth,
-      emailRef.current.value,
-      passwordRef.current.value
-    )
-      .then((userCredential) => {
-        const user = userCredential.user;
-        const { uid, email, displayName, photoURL } = user;
-        dispatch(
-          addUser({
-            uid: uid,
-            email: email,
-            displayName: displayName,
-            photoURL: photoURL,
-          })
-        );
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+  async function handleSignIn() {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      const user = userCredential.user;
+      const { uid, email, displayName, photoURL } = user;
+      dispatch(
+        addUser({
+          uid: uid,
+          email: email,
+          displayName: displayName,
+          photoURL: photoURL,
+        })
+      );
+    } catch (error) {
+      setErrorMessage("User not found");
+    }
   }
 
   function handleLearnMore() {
@@ -52,6 +53,7 @@ const LoginBody = () => {
     <div className="relative">
       <img
         src={LOGIN_IMG_URL}
+        alt="bg-image"
         className="bg-gradient-to-t from-black w-full h-screen object-cover"
       />
       <div className="absolute w-full h-full top-0 left-0 bg-black opacity-60"></div>
@@ -79,7 +81,7 @@ const LoginBody = () => {
             </div>
             <div className="w-full">
               {errorMessage && (
-                <p className="text-red-600 text-sm font-semibold mb-4">
+                <p className="text-red-600 text-sm font-semibold mb-4 pl-1">
                   {errorMessage}
                 </p>
               )}

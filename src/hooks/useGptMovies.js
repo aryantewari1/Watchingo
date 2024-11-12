@@ -4,7 +4,6 @@ import { model } from "../utils/geminiAI";
 import { setGptMovies } from "../store/Slices/GptSlice";
 
 const useGptMovies = (searchBar) => {
-  console.log(searchBar);
   const dispatch = useDispatch();
   const searchTmdbMoives = async (movie) => {
     const url =
@@ -21,14 +20,14 @@ const useGptMovies = (searchBar) => {
       searchBar?.current?.value +
       "just give me 5 movies separated by commas";
     const result = await model.generateContent(prompt);
-    console.log(result?.response?.text().split(","));
+
     const gptMoviesResult = result?.response?.text().split(",");
     const gptMoviesArray = gptMoviesResult.map((movie) =>
       searchTmdbMoives(movie.trim())
     );
-    console.log(gptMoviesArray);
+
     const gptMovies = await Promise.all(gptMoviesArray);
-    console.log(gptMovies);
+
     dispatch(setGptMovies(gptMovies));
   };
   return handleGptSearch;

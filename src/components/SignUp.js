@@ -44,7 +44,6 @@ const SignUp = () => {
                 photoURL: user.photoURL,
               })
             );
-            console.log("user updated in sign up");
           })
           .catch((error) => {
             // An error occurred
